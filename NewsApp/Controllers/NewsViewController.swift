@@ -22,6 +22,7 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "News"
         newsTableView.delegate = self
         newsTableView.dataSource = self
         newsTableView.rowHeight = 70.0

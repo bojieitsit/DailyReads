@@ -29,8 +29,15 @@ class FavouritesViewController: UIViewController {
         loadItems()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        favouritesTableView.reloadData()
+    }
+    
+    
     func loadItems() {
         items = realm.objects(FavouriteItem.self)
+        items = items?.distinct(by: ["title"])
         favouritesTableView.reloadData()
     }
     
@@ -103,8 +110,16 @@ extension FavouritesViewController: SwipeTableViewCellDelegate {
         let deleteAction = SwipeAction(style: .destructive, title: "Favourite") { action, indexPath in
             // handle action by updating model with deletion
             print("Deleted")
-            action.hidesWhenSelected = true
-            self.deleteItems(at: indexPath)
+            if let itemToDelete = self.items?[indexPath.row] {
+                do {
+                    try self.realm.write {
+                        self.realm.delete(itemToDelete)
+                    }
+                } catch {
+                    print("Error deleting item \(error)")
+                }
+            }
+            self.favouritesTableView.reloadData()
             
             
         }
