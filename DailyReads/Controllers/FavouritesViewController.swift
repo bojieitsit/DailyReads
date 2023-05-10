@@ -12,12 +12,10 @@ import RealmSwift
 
 class FavouritesViewController: UIViewController {
     
-    let realm = try! Realm()
-    var items: RealmSwift.Results<FavouriteItem>?
-    
     @IBOutlet weak var favouritesTableView: UITableView!
     
-    var posts: [Post] = []
+    let realm = try! Realm()
+    var items: RealmSwift.Results<FavouriteItem>?
     var chosenUrl: String?
     
     override func viewDidLoad() {
@@ -33,13 +31,14 @@ class FavouritesViewController: UIViewController {
         favouritesTableView.reloadData()
     }
     
-    
+    //MARK: - Load Items From Realm
     func loadItems() {
         items = realm.objects(FavouriteItem.self)
         items = items?.distinct(by: ["title"])
         favouritesTableView.reloadData()
     }
     
+    //MARK: - Delete Items From Realm
     func deleteItems(at indexPath: IndexPath) {
         if let itemForDeletion = items?[indexPath.row] {
             do {
@@ -52,7 +51,7 @@ class FavouritesViewController: UIViewController {
         }
     }
     
-    
+    //MARK: - Move To Web Page
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? WebViewController {
             destinationVC.currentUrl = chosenUrl
@@ -82,20 +81,14 @@ extension FavouritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items?.count ?? 1
     }
-    
-    
-    
 }
 
 //MARK: - TableView Delegate Method
-
 extension FavouritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosenUrl = items?[indexPath.row].url ?? "google.com"
         performSegue(withIdentifier: "goToWeb", sender: self)
     }
-    
-    
 }
 
 

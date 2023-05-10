@@ -12,22 +12,20 @@ import UIOnboarding
 
 class NewsViewController: UIViewController {
     
-
-    
-    let realm = try! Realm()
-    var items: List<FavouriteItem>?
-    
     @IBOutlet weak var newsTableView: UITableView!
     
+    let defaults = UserDefaults.standard
+    let realm = try! Realm()
+    var items: List<FavouriteItem>?
     var networking = NetworkManager()
     var posts: [Post] = []
     var chosenUrl: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let onboardingController: UIOnboardingViewController = .init(withConfiguration: .setUp())
-        onboardingController.delegate = self
-        navigationController?.present(onboardingController, animated: false)
+        if !defaults.bool(forKey: "hasCompletedOnboarding") {
+            showOnboarding()
+        }
         navigationItem.title = "News"
         newsTableView.delegate = self
         newsTableView.dataSource = self
@@ -44,7 +42,14 @@ class NewsViewController: UIViewController {
         }
     }
     
+    //MARK: - Present Welcome Screen
+    func showOnboarding() {
+        let onboardingController: UIOnboardingViewController = .init(withConfiguration: .setUp())
+        onboardingController.delegate = self
+        navigationController?.present(onboardingController, animated: false)
+    }
     
+    //MARK: - Move To Web Page
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? WebViewController {
             destinationVC.currentUrl = chosenUrl
@@ -63,9 +68,6 @@ class NewsViewController: UIViewController {
     }
 }
 
-
-
-
 //MARK: - TableView DataSource Methods
 extension NewsViewController: UITableViewDataSource {
     
@@ -83,7 +85,6 @@ extension NewsViewController: UITableViewDataSource {
 }
 
 //MARK: - TableView Delegate Method
-
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosenUrl = posts[indexPath.row].url
@@ -92,7 +93,6 @@ extension NewsViewController: UITableViewDelegate {
     
     
 }
-
 
 //MARK: - SwipeCell Delegate Method
 extension NewsViewController: SwipeTableViewCellDelegate {
@@ -121,11 +121,12 @@ extension NewsViewController: SwipeTableViewCellDelegate {
 }
 
 //MARK: - Onboarding Setup
-
 extension NewsViewController: UIOnboardingViewControllerDelegate {
     func didFinishOnboarding(onboardingViewController: UIOnboardingViewController) {
         onboardingViewController.modalTransitionStyle = .crossDissolve
         onboardingViewController.dismiss(animated: true, completion: nil)
+        UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+        
     }
 }
 
@@ -140,6 +141,3 @@ extension UIOnboardingViewConfiguration {
                      buttonConfiguration: UIOnboardingHelper.setUpButton())
     }
 }
-
-
-
