@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import SwipeCellKit
+import RealmSwift
 
 class NewsViewController: UIViewController {
+    
+    let realm = try! Realm()
+    var items: List<FavouriteItem>?
     
     @IBOutlet weak var newsTableView: UITableView!
     
@@ -39,16 +44,29 @@ class NewsViewController: UIViewController {
         }
     }
     
+    //MARK: - Data Manipulation Methods
+    func save(item: FavouriteItem) {
+        do {
+            try realm.write {
+                realm.add(item)
+            }
+        } catch {
+            print("Error saving item \(error)")
+        }
+    }
 }
+
+
 
 
 //MARK: - TableView DataSource Methods
 extension NewsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
-        cell.idLabel.text = String(posts[indexPath.row].points)
-        cell.newsLabel.text = posts[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SwipeTableViewCell
+        //        cell.idLabel.text = String(posts[indexPath.row].points)
+        cell.textLabel?.text = posts[indexPath.row].title
+        cell.delegate = self
         return cell
     }
     
@@ -66,12 +84,40 @@ extension NewsViewController: UITableViewDelegate {
         chosenUrl = posts[indexPath.row].url
         performSegue(withIdentifier: "goToWeb", sender: self)
     }
+    
+    
 }
 
 
+//MARK: - SwipeCell Delegate Method
+extension NewsViewController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let favoutitesAction = SwipeAction(style: .destructive, title: "Favourite") { action, indexPath in
+            // handle action by updating model with deletion
+            print("Added to favoutites")
+            action.hidesWhenSelected = true
+            
+            
+            //title = posts[indexPath.row].title
+            //link = posts[indexPath.row].url
+            let newFavouriteItem = FavouriteItem()
+            newFavouriteItem.title = self.posts[indexPath.row].title
+            newFavouriteItem.url = self.posts[indexPath.row].url ?? "google.com"
+            
+            print(newFavouriteItem.title)
 
-
-
+            self.items?.append(newFavouriteItem)
+            self.save(item: newFavouriteItem)
+        }
+        
+        // customize the action appearance
+        favoutitesAction.image = UIImage(named: "Flag-Icon")
+        
+        return [favoutitesAction]
+    }
+}
 
 
 
