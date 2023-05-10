@@ -30,7 +30,7 @@
         <!--News-->
         <scene sceneID="Cjv-Qp-XVd">
             <objects>
-                <viewController id="Xco-R5-dwX" customClass="NewsViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xco-R5-dwX" customClass="NewsViewController" customModule="DailyReads" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ura-Es-3h2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,7 @@
         <!--Favourites-->
         <scene sceneID="0Ci-zr-DLw">
             <objects>
-                <viewController id="dcX-Yl-tPZ" customClass="FavouritesViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dcX-Yl-tPZ" customClass="FavouritesViewController" customModule="DailyReads" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="791-Us-ewT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,7 +115,7 @@
         <!--Web View Controller-->
         <scene sceneID="pbb-sz-euP">
             <objects>
-                <viewController id="auK-fp-vyf" customClass="WebViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="auK-fp-vyf" customClass="WebViewController" customModule="DailyReads" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Si9-WR-0gD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

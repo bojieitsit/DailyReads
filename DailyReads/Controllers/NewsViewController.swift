@@ -11,6 +11,8 @@ import RealmSwift
 
 class NewsViewController: UIViewController {
     
+    //NAME: DailyReads
+    
     let realm = try! Realm()
     var items: List<FavouriteItem>?
     
