@@ -8,8 +8,11 @@
 import UIKit
 import SwipeCellKit
 import RealmSwift
+import UIOnboarding
 
 class NewsViewController: UIViewController {
+    
+
     
     let realm = try! Realm()
     var items: List<FavouriteItem>?
@@ -22,6 +25,9 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let onboardingController: UIOnboardingViewController = .init(withConfiguration: .setUp())
+        onboardingController.delegate = self
+        navigationController?.present(onboardingController, animated: false)
         navigationItem.title = "News"
         newsTableView.delegate = self
         newsTableView.dataSource = self
@@ -103,7 +109,7 @@ extension NewsViewController: SwipeTableViewCellDelegate {
             newFavouriteItem.url = self.posts[indexPath.row].url ?? "google.com"
             
             print(newFavouriteItem.title)
-
+            
             self.items?.append(newFavouriteItem)
             self.save(item: newFavouriteItem)
         }
@@ -114,10 +120,26 @@ extension NewsViewController: SwipeTableViewCellDelegate {
     }
 }
 
+//MARK: - Onboarding Setup
 
+extension NewsViewController: UIOnboardingViewControllerDelegate {
+    func didFinishOnboarding(onboardingViewController: UIOnboardingViewController) {
+        onboardingViewController.modalTransitionStyle = .crossDissolve
+        onboardingViewController.dismiss(animated: true, completion: nil)
+    }
+}
 
-
-
+extension UIOnboardingViewConfiguration {
+    // UIOnboardingViewController init
+    static func setUp() -> UIOnboardingViewConfiguration {
+        return .init(appIcon: UIOnboardingHelper.setUpIcon(),
+                     firstTitleLine: UIOnboardingHelper.setUpFirstTitleLine(),
+                     secondTitleLine: UIOnboardingHelper.setUpSecondTitleLine(),
+                     features: UIOnboardingHelper.setUpFeatures(),
+                     textViewConfiguration: UIOnboardingHelper.setUpNotice(),
+                     buttonConfiguration: UIOnboardingHelper.setUpButton())
+    }
+}
 
 
 

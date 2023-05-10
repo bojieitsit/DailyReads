@@ -19,7 +19,7 @@ class FavouritesViewController: UIViewController {
     
     var posts: [Post] = []
     var chosenUrl: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         favouritesTableView.delegate = self
@@ -51,8 +51,8 @@ class FavouritesViewController: UIViewController {
             }
         }
     }
-
-
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? WebViewController {
             destinationVC.currentUrl = chosenUrl

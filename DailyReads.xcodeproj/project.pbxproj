@@ -13,6 +13,8 @@
 		550AC2812A0BA62D00A77E60 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 550AC2802A0BA62D00A77E60 /* Realm */; };
 		550AC2832A0BA62D00A77E60 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 550AC2822A0BA62D00A77E60 /* RealmSwift */; };
 		550AC2852A0BA6CC00A77E60 /* FavouriteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550AC2842A0BA6CC00A77E60 /* FavouriteItem.swift */; };
+		550AC2882A0BCA5100A77E60 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 550AC2872A0BCA5100A77E60 /* UIOnboarding */; };
+		550AC28C2A0BCCC600A77E60 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550AC28B2A0BCCC600A77E60 /* OnboardingViewController.swift */; };
 		552030D82A051CF400A3F7B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552030D72A051CF400A3F7B3 /* AppDelegate.swift */; };
 		552030DA2A051CF400A3F7B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552030D92A051CF400A3F7B3 /* SceneDelegate.swift */; };
 		552030DC2A051CF400A3F7B3 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552030DB2A051CF400A3F7B3 /* NewsViewController.swift */; };
@@ -29,6 +31,7 @@
 		550AC2782A0A92C000A77E60 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		550AC27D2A0B9FCD00A77E60 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		550AC2842A0BA6CC00A77E60 /* FavouriteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteItem.swift; sourceTree = "<group>"; };
+		550AC28B2A0BCCC600A77E60 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		552030D42A051CF400A3F7B3 /* DailyReads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyReads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		552030D72A051CF400A3F7B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		552030D92A051CF400A3F7B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				550AC2832A0BA62D00A77E60 /* RealmSwift in Frameworks */,
+				550AC2882A0BCA5100A77E60 /* UIOnboarding in Frameworks */,
 				550AC2812A0BA62D00A77E60 /* Realm in Frameworks */,
 				550AC27C2A0B9F5F00A77E60 /* SwipeCellKit in Frameworks */,
 			);
@@ -80,8 +84,8 @@
 				552031032A052CC800A3F7B3 /* Views */,
 				552031042A052CCF00A3F7B3 /* Controllers */,
 				552031052A052CD800A3F7B3 /* Supporting Files */,
-				552030D72A051CF400A3F7B3 /* AppDelegate.swift */,
 				552030D92A051CF400A3F7B3 /* SceneDelegate.swift */,
+				552030D72A051CF400A3F7B3 /* AppDelegate.swift */,
 				552030E52A051CF500A3F7B3 /* Info.plist */,
 			);
 			path = DailyReads;
@@ -113,6 +117,7 @@
 				552030DB2A051CF400A3F7B3 /* NewsViewController.swift */,
 				5520310C2A052D5F00A3F7B3 /* WebViewController.swift */,
 				550AC27D2A0B9FCD00A77E60 /* FavouritesViewController.swift */,
+				550AC28B2A0BCCC600A77E60 /* OnboardingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				550AC27B2A0B9F5F00A77E60 /* SwipeCellKit */,
 				550AC2802A0BA62D00A77E60 /* Realm */,
 				550AC2822A0BA62D00A77E60 /* RealmSwift */,
+				550AC2872A0BCA5100A77E60 /* UIOnboarding */,
 			);
 			productName = NewsApp;
 			productReference = 552030D42A051CF400A3F7B3 /* DailyReads.app */;
@@ -178,6 +184,7 @@
 			packageReferences = (
 				550AC27A2A0B9F5F00A77E60 /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 				550AC27F2A0BA62D00A77E60 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				550AC2862A0BCA5100A77E60 /* XCRemoteSwiftPackageReference "UIOnboarding" */,
 			);
 			productRefGroup = 552030D52A051CF400A3F7B3 /* Products */;
 			projectDirPath = "";
@@ -216,6 +223,7 @@
 				5520310D2A052D5F00A3F7B3 /* WebViewController.swift in Sources */,
 				552030D82A051CF400A3F7B3 /* AppDelegate.swift in Sources */,
 				552030DA2A051CF400A3F7B3 /* SceneDelegate.swift in Sources */,
+				550AC28C2A0BCCC600A77E60 /* OnboardingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +465,14 @@
 				version = 10.39.1;
 			};
 		};
+		550AC2862A0BCA5100A77E60 /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lascic/UIOnboarding.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -474,6 +490,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 550AC27F2A0BA62D00A77E60 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		550AC2872A0BCA5100A77E60 /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 550AC2862A0BCA5100A77E60 /* XCRemoteSwiftPackageReference "UIOnboarding" */;
+			productName = UIOnboarding;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
