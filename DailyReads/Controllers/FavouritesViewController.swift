@@ -86,7 +86,7 @@ extension FavouritesViewController: UITableViewDataSource {
 //MARK: - TableView Delegate Method
 extension FavouritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenUrl = items?[indexPath.row].url ?? "google.com"
+        chosenUrl = items?[indexPath.row].url ?? "https://www.google.com/"
         performSegue(withIdentifier: "goToWeb", sender: self)
     }
 }

@@ -22,6 +22,7 @@ class NewsViewController: UIViewController {
     var chosenUrl: String?
     
     override func viewDidLoad() {
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
         super.viewDidLoad()
         if !defaults.bool(forKey: "hasCompletedOnboarding") {
             showOnboarding()
@@ -87,7 +88,7 @@ extension NewsViewController: UITableViewDataSource {
 //MARK: - TableView Delegate Method
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenUrl = posts[indexPath.row].url
+        chosenUrl = posts[indexPath.row].url  ?? "https://www.google.com/"
         performSegue(withIdentifier: "goToWeb", sender: self)
     }
     
