@@ -17,7 +17,6 @@ class FavouritesViewController: UIViewController {
     
     @IBOutlet weak var favouritesTableView: UITableView!
     
-    
     var posts: [Post] = []
     var chosenUrl: String?
 
@@ -69,7 +68,6 @@ extension FavouritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SwipeTableViewCell
-        //        cell.idLabel.text = String(posts[indexPath.row].points)
         
         if let item = items?[indexPath.row] {
             cell.textLabel?.text = item.title
@@ -93,7 +91,6 @@ extension FavouritesViewController: UITableViewDataSource {
 
 extension FavouritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //perform segue
         chosenUrl = items?[indexPath.row].url ?? "google.com"
         performSegue(withIdentifier: "goToWeb", sender: self)
     }
@@ -124,7 +121,6 @@ extension FavouritesViewController: SwipeTableViewCellDelegate {
             
         }
         
-        // customize the action appearance
         deleteAction.image = UIImage(named: "Trash-Icon")
         favouritesTableView.deselectRow(at: indexPath, animated: true)
         

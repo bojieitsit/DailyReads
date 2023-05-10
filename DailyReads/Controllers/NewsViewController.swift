@@ -11,8 +11,6 @@ import RealmSwift
 
 class NewsViewController: UIViewController {
     
-    //NAME: DailyReads
-    
     let realm = try! Realm()
     var items: List<FavouriteItem>?
     
@@ -67,7 +65,6 @@ extension NewsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SwipeTableViewCell
-        //        cell.idLabel.text = String(posts[indexPath.row].points)
         cell.textLabel?.text = posts[indexPath.row].title
         cell.delegate = self
         return cell
@@ -83,7 +80,6 @@ extension NewsViewController: UITableViewDataSource {
 
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //perform segue
         chosenUrl = posts[indexPath.row].url
         performSegue(withIdentifier: "goToWeb", sender: self)
     }
@@ -102,9 +98,6 @@ extension NewsViewController: SwipeTableViewCellDelegate {
             print("Added to favoutites")
             action.hidesWhenSelected = true
             
-            
-            //title = posts[indexPath.row].title
-            //link = posts[indexPath.row].url
             let newFavouriteItem = FavouriteItem()
             newFavouriteItem.title = self.posts[indexPath.row].title
             newFavouriteItem.url = self.posts[indexPath.row].url ?? "google.com"
@@ -115,7 +108,6 @@ extension NewsViewController: SwipeTableViewCellDelegate {
             self.save(item: newFavouriteItem)
         }
         
-        // customize the action appearance
         favoutitesAction.image = UIImage(named: "Flag-Icon")
         
         return [favoutitesAction]
